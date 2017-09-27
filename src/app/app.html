@@ -12,9 +12,9 @@
 <ion-footer no-padding no-border>
 
   <ion-row no-padding>
-    <ion-col no-padding *ngFor="let tab of tabs">
-      <button ion-button full icon-only no-padding>
-        <ion-icon name="{{tab.icon}}"></ion-icon>
+    <ion-col no-padding *ngFor="let page of pages">
+      <button ion-button full icon-only no-padding (click)="read(page)">
+        <ion-icon name="{{page.icon}}"></ion-icon>
       </button>
     </ion-col>
   </ion-row>

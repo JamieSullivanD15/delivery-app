@@ -6,10 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { CompaniesProvider } from '../providers/companies/companies';
-import { FuelCostProvider } from '../providers/fuel-cost/fuel-cost';
-import { EarningsProvider } from '../providers/earnings/earnings';
-import { ShiftProvider } from '../providers/shift/shift';
+import { CompaniesProvider } from '../providers/companies/companies-provider';
+import { FuelCostProvider } from '../providers/fuel-cost/fuel-cost-provider';
+import { EarningsProvider } from '../providers/earnings/earnings-provider';
+import { ShiftProvider } from '../providers/shift/shift-provider';
 
 @NgModule({
   declarations: [

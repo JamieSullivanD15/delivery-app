@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,12 +7,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage:any = 'ProfilePage';
 
-  tabs: any = [
-  {buttonText: 'Profile', name: 'ProfilePage', icon:'person'},
-  {buttonText: 'Shift', name: 'ShiftPage', icon:'paper'},
-  {buttonText: 'Settings', name: 'SettingsPage', icon:'settings'}
+  pages: any = [
+  { name: 'ProfilePage', icon:'person' },
+  { name: 'ShiftPage', icon:'paper' },
+  { name: 'EarningsPage', icon:'stats' },
+  { name: 'SettingsPage', icon:'settings' }
 ];
 
   constructor(
@@ -27,6 +29,10 @@ export class MyApp {
       splashScreen.hide();
     });
 
+  }
+
+  read(page) {
+    this.nav.setRoot(page.name);
   }
 
 
