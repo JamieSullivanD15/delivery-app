@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { CompaniesProvider } from '../providers/companies/companies';
+import { FuelCostProvider } from '../providers/fuel-cost/fuel-cost';
+import { EarningsProvider } from '../providers/earnings/earnings';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { MyApp } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CompaniesProvider,
+    FuelCostProvider,
+    EarningsProvider
   ]
 })
 export class AppModule {}
