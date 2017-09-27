@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost';
-import { CompaniesProvider } from '../../providers/companies/companies';
+import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost-provider';
+import { CompaniesProvider } from '../../providers/companies/companies-provider';
 import { Company } from '../../models/company';
 
 @IonicPage({

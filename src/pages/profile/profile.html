@@ -4,28 +4,23 @@
 </ion-header>
 
 
-<ion-content padding style="margin-top: 60px;">
+<ion-content no-padding>
 
-
-
-
-  
-
-  <!-- <ion-item>
+  <ion-item>
     <ion-label floating>Company Name</ion-label>
-    <ion-input [(ngModel)]="company.name"></ion-input>
+    <ion-input type="string" [(ngModel)]="company.name"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Hourly Pay</ion-label>
-    <ion-input [(ngModel)]="company.wage"></ion-input>
+    <ion-input type="number" [(ngModel)]="company.wage"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Delivery Charge</ion-label>
-    <ion-input [(ngModel)]="company.deliveryCharge"></ion-input>
+    <ion-input type="number" [(ngModel)]="company.deliveryCharge"></ion-input>
   </ion-item>
 
   <button ion-button (click)="addCompany()">Add Company</button>
-  <button ion-button (click)="getCompanies()">Get Companies</button> -->
+  <button ion-button (click)="getCompanies()">Get Companies</button>
 </ion-content>
