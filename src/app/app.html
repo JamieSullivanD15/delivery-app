@@ -1,1 +1,22 @@
 <ion-nav [root]="rootPage"></ion-nav>
+
+
+<ion-header no-padding no-border>
+
+  <ion-navbar color="primary">
+    <ion-title>Delivery App</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-footer no-padding no-border>
+
+  <ion-row no-padding>
+    <ion-col no-padding *ngFor="let tab of tabs">
+      <button ion-button full icon-only no-padding>
+        <ion-icon name="{{tab.icon}}"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-footer>
