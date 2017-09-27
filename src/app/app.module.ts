@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { CompaniesProvider } from '../providers/companies/companies';
 import { FuelCostProvider } from '../providers/fuel-cost/fuel-cost';
 import { EarningsProvider } from '../providers/earnings/earnings';
+import { ShiftProvider } from '../providers/shift/shift';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EarningsProvider } from '../providers/earnings/earnings';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CompaniesProvider,
     FuelCostProvider,
-    EarningsProvider
+    EarningsProvider,
+    ShiftProvider
   ]
 })
 export class AppModule {}
