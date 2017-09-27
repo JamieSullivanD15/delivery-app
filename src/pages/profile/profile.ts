@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost'
 
 @IonicPage({
   name: 'ProfilePage',
@@ -11,11 +12,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fuelCostProvider: FuelCostProvider
+  ) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  getFuelCost() {
+    console.log(this.fuelCostProvider.calculateFuelCost(500, 1000));
   }
 
 }
