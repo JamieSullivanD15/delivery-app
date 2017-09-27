@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost'
+import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost';
+import { CompaniesProvider } from '../../providers/companies/companies';
+import { Company } from '../../models/company';
 
 @IonicPage({
   name: 'ProfilePage',
@@ -12,16 +14,25 @@ import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost'
 })
 export class ProfilePage {
 
+  company = {} as Company;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private fuelCostProvider: FuelCostProvider
+    private fuelCostProvider: FuelCostProvider,
+    private companiesProvider: CompaniesProvider
   ) {
 
   }
 
-  getFuelCost() {
-    console.log(this.fuelCostProvider.calculateFuelCost(500, 1000));
+  addCompany() {
+    this.companiesProvider.addCompany(this.company);
+    this.company = {} as Company;
   }
+
+  getCompanies() {
+    this.companiesProvider.getCompanies()
+  }
+
 
 }

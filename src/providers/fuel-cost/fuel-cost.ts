@@ -33,7 +33,7 @@ export class FuelCostProvider {
 
   calculateFuelCost(startMileage: number, endMileage: number) {
     // 1 Imperial Gallon is 4.54609 Litre's
-    // Distance / MPG * Price Per Gallon
+    // Mileage Fuel Cost = Distance / MPG * Price Per Gallon
     let totalMileage = endMileage - startMileage;
     let pricePerGallon = this.pricePerLitre * 4.54609;
     return totalMileage / this.vechicleMpg * pricePerGallon;

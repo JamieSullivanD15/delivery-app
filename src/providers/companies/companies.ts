@@ -1,18 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Company } from '../../models/company';
 
-/*
-  Generated class for the CompaniesProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class CompaniesProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello CompaniesProvider Provider');
+  companies: Array<Company> = [];
+
+  constructor(
+    public http: Http
+  ) {
+
+  }
+
+  getCompanies() {
+    return this.companies;
+  }
+
+  addCompany(company: Company) {
+    // this.company.name = name;
+    // this.company.wage = wage;
+    // this.company.deliveryCharge = deliveryCharge;
+    this.companies.push(company);
+  }
+
+  editCompany(index) {
+
+  }
+
+  deleteCompany(index) {
+
   }
 
 }
