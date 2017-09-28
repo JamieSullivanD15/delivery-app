@@ -1,11 +1,11 @@
-import { Delivery } from './delivery';
-import { Company } from './company';
-import { ExtraTransaction } from './extra-transaction';
+import { Delivery } from './delivery-model';
+import { Company } from './company-model';
+import { Transaction } from './transaction-model';
 
 export interface Shift {
   date: Date;
   deliveries: Array<Delivery>;
-  extraTransactions: Array<ExtraTransaction>;
+  extraTransactions: Array<Transaction>;
   company: Company;
   startMileage: number;
   endMileage: number;

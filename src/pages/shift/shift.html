@@ -7,7 +7,7 @@
 <ion-content no-padding>
 
   <div class="start-shift" *ngIf="!activeShift">
-    <ion-item>
+    <ion-item no-padding>
       <ion-label floating>Choose Company</ion-label>
       <ion-select type="select" [(ngModel)]="selectedCompany">
         <ion-option *ngFor="let company of companies" [value]="company">
@@ -16,7 +16,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item no-padding>
       <ion-label floating>Enter Starting Mileage</ion-label>
       <ion-input type="number" [(ngModel)]="shift.startMileage"></ion-input>
     </ion-item>
@@ -36,6 +36,19 @@
       </ion-col>
     </ion-row>
 
+    <ion-list no-padding>
+      <button ion-item no-padding *ngFor="let transaction of transactions; let i = index">
+        <ion-row>
+          <ion-col>Transaction # {{i + 1}}</ion-col>
+          <ion-col>{{transaction.type}}</ion-col>
+          <ion-col>{{transaction.amount}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{transaction.notes}}</ion-col>
+        </ion-row>
+      </button>
+    </ion-list>
+
     <ion-row>
       <ion-col col-9>Add Delivery</ion-col>
       <ion-col col-3>
@@ -46,13 +59,13 @@
     </ion-row>
 
     <ion-list no-padding>
-      <ion-item *ngFor="let delivery of deliveries; let i = index">
+      <button ion-item no-padding *ngFor="let delivery of deliveries; let i = index">
         <ion-row>
           <ion-col>Delivery # {{i + 1}}</ion-col>
           <ion-col>{{delivery.paymentType}}</ion-col>
           <ion-col>{{delivery.tipAmount}}</ion-col>
         </ion-row>
-      </ion-item>
+      </button>
     </ion-list>
 
     <button ion-button (click)="finishShift()">Finish Shift</button>
