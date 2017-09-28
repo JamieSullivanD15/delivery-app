@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost-provider';
 import { CompaniesProvider } from '../../providers/companies/companies-provider';
-import { Company } from '../../models/company';
+import { Company } from '../../models/company-model';
 
 @IonicPage({
   name: 'ProfilePage',

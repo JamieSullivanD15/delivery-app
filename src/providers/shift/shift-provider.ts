@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Shift } from '../../models/shift'
+import { Shift } from '../../models/shift-model';
 
 @Injectable()
 export class ShiftProvider {
