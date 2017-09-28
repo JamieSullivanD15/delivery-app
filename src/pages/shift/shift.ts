@@ -56,7 +56,7 @@ export class ShiftPage {
   }
 
   addTransaction() {
-
+    this.navCtrl.push('TransactionPage');
   }
 
   editDelivery() {
