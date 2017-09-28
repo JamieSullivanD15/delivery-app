@@ -5,5 +5,27 @@
 
 
 <ion-content no-padding style="margin-top: 60px;">
-  Transaction
+
+  <ion-item no-padding>
+    <ion-label floating>Transaction Type</ion-label>
+    <ion-select type="select" [(ngModel)]="type">
+      <ion-option value="bonus">
+        Bonus
+      </ion-option>
+      <ion-option value="expense">
+        Expense
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Enter Amount</ion-label>
+    <ion-input type="number" [(ngModel)]="amount"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Notes</ion-label>
+    <ion-input type="text" [(ngModel)]="notes"></ion-input>
+  </ion-item>
+
 </ion-content>
