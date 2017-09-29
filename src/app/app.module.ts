@@ -10,6 +10,8 @@ import { CompaniesProvider } from '../providers/companies/companies-provider';
 import { FuelCostProvider } from '../providers/fuel-cost/fuel-cost-provider';
 import { EarningsProvider } from '../providers/earnings/earnings-provider';
 import { ShiftProvider } from '../providers/shift/shift-provider';
+import { TransactionProvider } from '../providers/transaction/transaction-provider';
+import { DeliveryProvider } from '../providers/delivery/delivery-provider';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ShiftProvider } from '../providers/shift/shift-provider';
     CompaniesProvider,
     FuelCostProvider,
     EarningsProvider,
-    ShiftProvider
+    ShiftProvider,
+    TransactionProvider,
+    DeliveryProvider
   ]
 })
 export class AppModule {}

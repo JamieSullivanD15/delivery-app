@@ -8,11 +8,11 @@
 
   <ion-item no-padding>
     <ion-label floating>Transaction Type</ion-label>
-    <ion-select type="select" [(ngModel)]="type">
-      <ion-option value="bonus">
+    <ion-select type="select" [(ngModel)]="transaction.type">
+      <ion-option value="Bonus">
         Bonus
       </ion-option>
-      <ion-option value="expense">
+      <ion-option value="Expense">
         Expense
       </ion-option>
     </ion-select>
@@ -20,12 +20,15 @@
 
   <ion-item no-padding>
     <ion-label floating>Enter Amount</ion-label>
-    <ion-input type="number" [(ngModel)]="amount"></ion-input>
+    <ion-input type="number" [(ngModel)]="transaction.amount"></ion-input>
   </ion-item>
 
   <ion-item no-padding>
     <ion-label floating>Notes</ion-label>
-    <ion-input type="text" [(ngModel)]="notes"></ion-input>
+    <ion-input type="text" [(ngModel)]="transaction.notes"></ion-input>
   </ion-item>
+
+  <button ion-button (click)="addTransaction()">Add Transaction</button>
+  <button ion-button (click)="cancel()">Cancel</button>
 
 </ion-content>

@@ -5,6 +5,9 @@ import { Shift } from '../../models/shift-model';
 import { Delivery } from '../../models/delivery-model';
 import { Company } from '../../models/company-model';
 import { Transaction } from '../../models/transaction-model';
+import { TransactionProvider } from '../../providers/transaction/transaction-provider';
+import { DeliveryProvider } from '../../providers/delivery/delivery-provider';
+import { ShiftProvider } from '../../providers/shift/shift-provider';
 
 @IonicPage({
   name: 'ShiftPage',
@@ -21,30 +24,32 @@ export class ShiftPage {
   shift = {} as Shift;
   activeShift: boolean = false;
 
-  transactions: Array<Transaction> = [
-    {type: 'Expense', amount: 6, notes: 'Bought lunch'},
-    {type: 'Bonus', amount: 1.75, notes: 'Went to Dunboyne'}
-  ];
+  transactions: Array<Transaction>;
 
-  deliveries: Array<Delivery> = [
-    {tipAmount: 5, paymentType:'Paid'},
-    {tipAmount: 7, paymentType:'Not-Paid'}
-  ];
+  deliveries: Array<Delivery>;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private companiesProvider: CompaniesProvider
+    private companiesProvider: CompaniesProvider,
+    private transactionProvider: TransactionProvider,
+    private deliveryProvider: DeliveryProvider,
+    private shiftProvider: ShiftProvider
   ) {
     this.companies = companiesProvider.getCompanies();
+    this.transactions = this.transactionProvider.getTransactions();
+    this.deliveries = this.deliveryProvider.getDeliveries();
+    this.activeShift = this.shiftProvider.activeShift;
   }
 
   startShift() {
     this.activeShift = true;
+    this.shiftProvider.activeShift = true;
     this.shift.company = this.selectedCompany;
     this.shift.company.wage = Number(this.shift.company.wage);
     this.shift.company.deliveryCharge = Number(this.shift.company.deliveryCharge);
     this.shift.startMileage = Number(this.shift.startMileage);
+    this.shiftProvider.setCurrentShift(this.shift);
   }
 
   finishShift() {

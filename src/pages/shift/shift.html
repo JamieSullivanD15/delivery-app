@@ -24,7 +24,7 @@
     <button ion-button (click)="startShift()">Start New Shift</button>
   </div>
 
-  <div class="active-shift" *ngIf="!activeShift">
+  <div class="active-shift" *ngIf="activeShift">
     <ion-row>Date</ion-row>
 
     <ion-row>
@@ -63,7 +63,8 @@
         <ion-row>
           <ion-col>Delivery # {{i + 1}}</ion-col>
           <ion-col>{{delivery.paymentType}}</ion-col>
-          <ion-col>{{delivery.tipAmount}}</ion-col>
+          <ion-col>Tip: {{delivery.tipAmount}}</ion-col>
+          <ion-col>Total: {{delivery.total}}</ion-col>
         </ion-row>
       </button>
     </ion-list>

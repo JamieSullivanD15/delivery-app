@@ -6,10 +6,22 @@ import { Shift } from '../../models/shift-model';
 @Injectable()
 export class ShiftProvider {
 
-  shifts: Array<Shift>;
+  private shifts: Array<Shift>;
+  private currentShift = {} as Shift;
+  activeShift: boolean = false;
 
-  constructor(public http: Http) {
+  constructor(
+    public http: Http
+  ) {
 
+  }
+
+  setCurrentShift(shift : Shift) {
+    this.currentShift = shift;
+  }
+
+  getCurrentShift() {
+    return this.currentShift;
   }
 
 }

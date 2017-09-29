@@ -6,6 +6,34 @@
 
 <ion-content no-padding style="margin-top: 60px;">
 
-  Delivery
+  <ion-item no-padding>
+    <ion-label floating>Payment Type</ion-label>
+    <ion-select type="select" (ionChange)="onChange()" [(ngModel)]="delivery.paymentType">
+      <ion-option value="Paid">
+        Paid
+      </ion-option>
+      <ion-option value="Not-Paid">
+        Not-Paid
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-padding *ngIf="isPaid">
+    <ion-label floating >Tip Amount</ion-label>
+    <ion-input type="number" [(ngModel)]="delivery.tipAmount"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding *ngIf="isNotPaid">
+    <ion-label floating>Order Total</ion-label>
+    <ion-input type="number" [(ngModel)]="deliveryOrderAmount"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding *ngIf="isNotPaid">
+    <ion-label floating>Cash Given</ion-label>
+    <ion-input type="number" [(ngModel)]="cashGiven"></ion-input>
+  </ion-item>
+
+  <button ion-button (click)="addDelivery()">Add Delivery</button>
+  <button ion-button (click)="cancel()">Cancel</button>
 
 </ion-content>
