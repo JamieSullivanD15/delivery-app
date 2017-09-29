@@ -20,15 +20,15 @@
 
   <ion-item no-padding>
     <ion-label floating>Enter Amount</ion-label>
-    <ion-input type="number" [(ngModel)]="transaction.amount"></ion-input>
+    <ion-input type="number" [(ngModel)]="transaction.amount">{{transaction.amount}}</ion-input>
   </ion-item>
 
   <ion-item no-padding>
     <ion-label floating>Notes</ion-label>
-    <ion-input type="text" [(ngModel)]="transaction.notes"></ion-input>
+    <ion-input type="text" [(ngModel)]="transaction.notes">{{transaction.amount}}</ion-input>
   </ion-item>
 
-  <button ion-button (click)="addTransaction()">Add Transaction</button>
+  <button ion-button (click)="addTransaction()">{{buttonText}}</button>
   <button ion-button (click)="cancel()">Cancel</button>
 
 </ion-content>

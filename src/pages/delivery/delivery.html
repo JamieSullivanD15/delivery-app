@@ -20,20 +20,20 @@
 
   <ion-item no-padding *ngIf="isPaid">
     <ion-label floating >Tip Amount</ion-label>
-    <ion-input type="number" [(ngModel)]="delivery.tipAmount"></ion-input>
+    <ion-input type="number" [(ngModel)]="delivery.tipAmount">{{delivery.tipAmount}}</ion-input>
   </ion-item>
 
   <ion-item no-padding *ngIf="isNotPaid">
     <ion-label floating>Order Total</ion-label>
-    <ion-input type="number" [(ngModel)]="deliveryOrderAmount"></ion-input>
+    <ion-input type="number" [(ngModel)]="delivery.orderAmount">{{delivery.orderAmount}}</ion-input>
   </ion-item>
 
   <ion-item no-padding *ngIf="isNotPaid">
     <ion-label floating>Cash Given</ion-label>
-    <ion-input type="number" [(ngModel)]="cashGiven"></ion-input>
+    <ion-input type="number" [(ngModel)]="delivery.cashGiven">{{delivery.cashGiven}}</ion-input>
   </ion-item>
 
-  <button ion-button (click)="addDelivery()">Add Delivery</button>
+  <button ion-button (click)="addDelivery()">{{buttonText}}</button>
   <button ion-button (click)="cancel()">Cancel</button>
 
 </ion-content>

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CompaniesProvider } from '../../providers/companies/companies-provider';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+
 import { Shift } from '../../models/shift-model';
 import { Delivery } from '../../models/delivery-model';
 import { Company } from '../../models/company-model';
 import { Transaction } from '../../models/transaction-model';
+
+import { CompaniesProvider } from '../../providers/companies/companies-provider';
 import { TransactionProvider } from '../../providers/transaction/transaction-provider';
 import { DeliveryProvider } from '../../providers/delivery/delivery-provider';
 import { ShiftProvider } from '../../providers/shift/shift-provider';
@@ -31,6 +33,7 @@ export class ShiftPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController,
     private companiesProvider: CompaniesProvider,
     private transactionProvider: TransactionProvider,
     private deliveryProvider: DeliveryProvider,
@@ -56,32 +59,74 @@ export class ShiftPage {
 
   }
 
-  addDelivery() {
-    this.navCtrl.push('DeliveryPage');
+  add(type: any) {
+    if (type.toLowerCase() === 'delivery') this.navCtrl.push('DeliveryPage')
+    else if (type.toLowerCase() === 'transaction') this.navCtrl.push('TransactionPage');
   }
 
-  addTransaction() {
-    this.navCtrl.push('TransactionPage');
+  edit(i: number, type: any) {
+    if (type.toLowerCase() === 'delivery') {
+      this.navCtrl.push('DeliveryPage', {
+        delivery: this.deliveries[i],
+        paymentType: this.deliveries[i].paymentType,
+        index: i
+      });
+      this.deliveries = this.deliveryProvider.getDeliveries();
+    } else if (type.toLowerCase() === 'transaction') {
+      this.navCtrl.push('TransactionPage', {
+        transaction: this.transactions[i],
+        index: i
+      });
+      this.transactions = this.transactionProvider.getTransactions();
+    }
   }
 
-  editDelivery() {
-
-  }
-
-  editTransaction() {
-
-  }
-
-  deleteDelivery() {
-
-  }
-
-  deleteTransaction() {
-
+  delete(i: number, type: any) {
+    if (type.toLowerCase() === 'delivery') {
+      this.deliveryProvider.deleteDelivery(i);
+      this.deliveries = this.deliveryProvider.getDeliveries();
+    } else if (type.toLowerCase() === 'transaction') {
+      this.transactionProvider.deleteTransaction(i);
+      this.transactions = this.transactionProvider.getTransactions();
+    }
   }
 
   calculateEarnings() {
 
   }
+
+  presentActionSheet(i: number, type: any) {
+
+    const actionSheet = this.actionSheetCtrl.create(
+
+      {
+       buttons: [
+         {
+           text: 'Delete',
+           role: 'destructive',
+           handler: () => {
+             this.delete(i, type);
+           }
+         },
+         {
+           text: 'Edit',
+           handler: () => {
+             this.edit(i, type);
+           }
+         },
+         {
+           text: 'Cancel',
+           role: 'cancel',
+           handler: () => {
+
+           }
+         }
+       ]
+      }
+
+    );
+    actionSheet.present();
+  }
+
 
 }

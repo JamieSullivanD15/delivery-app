@@ -30,14 +30,14 @@
     <ion-row>
       <ion-col col-9>Add Transaction</ion-col>
       <ion-col col-3>
-        <button ion-button icon-only (click)="addTransaction()">
+        <button ion-button icon-only (click)="add('Transaction')">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
 
     <ion-list no-padding>
-      <button ion-item no-padding *ngFor="let transaction of transactions; let i = index">
+      <button ion-item no-padding (click)="presentActionSheet(i, 'transaction')" *ngFor="let transaction of transactions; let i = index">
         <ion-row>
           <ion-col>Transaction # {{i + 1}}</ion-col>
           <ion-col>{{transaction.type}}</ion-col>
@@ -52,14 +52,14 @@
     <ion-row>
       <ion-col col-9>Add Delivery</ion-col>
       <ion-col col-3>
-        <button ion-button icon-only (click)="addDelivery()">
+        <button ion-button icon-only (click)="add('Delivery')">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
 
     <ion-list no-padding>
-      <button ion-item no-padding *ngFor="let delivery of deliveries; let i = index">
+      <button ion-item no-padding (click)="presentActionSheet(i, 'delivery')" *ngFor="let delivery of deliveries; let i = index">
         <ion-row>
           <ion-col>Delivery # {{i + 1}}</ion-col>
           <ion-col>{{delivery.paymentType}}</ion-col>

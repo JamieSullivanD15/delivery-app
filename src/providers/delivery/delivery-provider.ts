@@ -18,12 +18,12 @@ export class DeliveryProvider {
     this.deliveries.push(delivery);
   }
 
-  editDelivery() {
-
+  editDelivery(i: number, updatedDelivery: any) {
+    this.deliveries[i] = updatedDelivery;
   }
 
-  deleteDelivery() {
-
+  deleteDelivery(i: number) {
+    this.deliveries.splice(i, 1);
   }
 
   getDeliveries() {

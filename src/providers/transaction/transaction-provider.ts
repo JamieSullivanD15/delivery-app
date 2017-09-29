@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 import { Transaction } from '../../models/transaction-model';
 
 @Injectable()
@@ -18,12 +19,12 @@ export class TransactionProvider {
     this.transactions.push(transaction);
   }
 
-  editTransaction() {
-
+  editTransaction(i: number, updatedTransaction: any) {
+    this.transactions[i] = updatedTransaction;
   }
 
-  deleteTransaction() {
-
+  deleteTransaction(i: number) {
+    this.transactions.splice(i, 1);
   }
 
   getTransactions() {
