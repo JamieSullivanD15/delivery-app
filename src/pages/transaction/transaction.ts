@@ -47,10 +47,6 @@ export class TransactionPage {
     this.navCtrl.setRoot('ShiftPage');
   }
 
-  deleteTransaction() {
-
-  }
-
   cancel() {
     this.navCtrl.setRoot('ShiftPage');
   }

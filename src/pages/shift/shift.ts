@@ -27,7 +27,6 @@ export class ShiftPage {
   activeShift: boolean = false;
 
   transactions: Array<Transaction>;
-
   deliveries: Array<Delivery>;
 
   constructor(
@@ -56,6 +55,10 @@ export class ShiftPage {
   }
 
   finishShift() {
+
+  }
+
+  calculateShiftTotal() {
 
   }
 
@@ -89,10 +92,6 @@ export class ShiftPage {
       this.transactionProvider.deleteTransaction(i);
       this.transactions = this.transactionProvider.getTransactions();
     }
-  }
-
-  calculateEarnings() {
-
   }
 
   presentActionSheet(i: number, type: any) {

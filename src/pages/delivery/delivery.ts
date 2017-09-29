@@ -64,10 +64,6 @@ export class DeliveryPage {
     this.navCtrl.setRoot('ShiftPage');
   }
 
-  deleteDelivery() {
-
-  }
-
   calculateTotal(paymentType: any) {
     var deliveryCharge = this.shiftProvider.getCurrentShift().company.deliveryCharge;
 
