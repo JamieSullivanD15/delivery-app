@@ -50,10 +50,12 @@ export class DeliveryPage {
   addDelivery() {
     this.delivery.tipAmount = Number(this.delivery.tipAmount);
     this.calculateTotal(this.delivery.paymentType);
+
     if (this.navParams.get('delivery')) {
       this.editDelivery()
       return;
     }
+
     this.deliveryProvider.addDelivery(this.delivery);
     this.navCtrl.setRoot('ShiftPage');
   }

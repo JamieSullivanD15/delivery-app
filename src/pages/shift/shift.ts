@@ -42,6 +42,8 @@ export class ShiftPage {
     this.transactions = this.transactionProvider.getTransactions();
     this.deliveries = this.deliveryProvider.getDeliveries();
     this.activeShift = this.shiftProvider.activeShift;
+    this.shift.totalEarned = 0;
+    this.calculateShiftTotal();
   }
 
   startShift() {
@@ -51,15 +53,32 @@ export class ShiftPage {
     this.shift.company.wage = Number(this.shift.company.wage);
     this.shift.company.deliveryCharge = Number(this.shift.company.deliveryCharge);
     this.shift.startMileage = Number(this.shift.startMileage);
-    this.shiftProvider.setCurrentShift(this.shift);
-  }
-
-  finishShift() {
-
+    this.shiftProvider.currentShift = this.shift;
   }
 
   calculateShiftTotal() {
+    let totalExpenses = 0;
+    this.shift.totalEarned = 0;
+    this.shift.grossPay = 0;
 
+    for (let i = 0; i < this.deliveries.length; ++i) {
+      this.shift.grossPay += this.deliveries[i].total;
+    }
+
+    for (let i = 0; i < this.transactions.length; ++i) {
+      if (this.transactions[i].type.toLowerCase() === 'bonus') this.shift.grossPay += this.transactions[i].amount
+      else if (this.transactions[i].type.toLowerCase() === 'expense') totalExpenses = this.transactions[i].amount;
+    }
+
+    this.shift.totalEarned = this.shift.grossPay - totalExpenses;
+  }
+
+  finishShift() {
+    this.shiftProvider.currentShift.deliveries = this.deliveryProvider.getDeliveries();
+    this.shiftProvider.currentShift.transactions = this.transactionProvider.getTransactions();
+    this.shiftProvider.currentShift.grossPay = this.shift.grossPay;
+    this.shiftProvider.currentShift.totalEarned = this.shift.totalEarned;
+    // console.log(this.shiftProvider.currentShift);
   }
 
   add(type: any) {
@@ -92,10 +111,11 @@ export class ShiftPage {
       this.transactionProvider.deleteTransaction(i);
       this.transactions = this.transactionProvider.getTransactions();
     }
+
+    this.calculateShiftTotal();
   }
 
   presentActionSheet(i: number, type: any) {
-
     const actionSheet = this.actionSheetCtrl.create(
 
       {
@@ -126,6 +146,5 @@ export class ShiftPage {
     );
     actionSheet.present();
   }
-
 
 }

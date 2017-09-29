@@ -69,7 +69,8 @@
       </button>
     </ion-list>
 
-    <button ion-button (click)="finishShift()">Finish Shift</button>
+    <ion-row>Total: {{this.shift.totalEarned}}</ion-row>
+    <button ion-button (click)="finishShift()" style="margin-bottom: 100px;">Finish Shift</button>
 
   </div>
 

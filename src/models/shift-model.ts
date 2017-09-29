@@ -5,7 +5,7 @@ import { Transaction } from './transaction-model';
 export interface Shift {
   date: Date;
   deliveries: Array<Delivery>;
-  extraTransactions: Array<Transaction>;
+  transactions: Array<Transaction>;
   company: Company;
   startMileage: number;
   endMileage: number;
