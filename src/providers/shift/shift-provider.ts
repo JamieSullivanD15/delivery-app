@@ -30,6 +30,7 @@ export class ShiftProvider {
     let wageEarned = this.currentShift.company.wage * this.currentShift.hoursWorked;
     this.currentShift.grossPay += wageEarned;
     this.currentShift.totalEarned = this.currentShift.grossPay - this.currentShift.mileageFuelCost;
+    //this.currentShift.mileageFuelCost = this.currentShift.mileageFuelCost.toFixed(2);
   }
 
 }

@@ -160,14 +160,14 @@ export class ShiftPage {
       message: 'Please confirm you would like to finish the current shift.',
       buttons: [
         {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
           text: 'Finish',
           handler: () => {
             this.finishShift();
           }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
         }
       ]
     });

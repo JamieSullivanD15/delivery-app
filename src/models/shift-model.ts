@@ -12,7 +12,7 @@ export interface Shift {
   startMileage: number;
   endMileage: number;
   totalMileage: number;
-  mileageFuelCost: number;
+  mileageFuelCost: any;
 
   hoursWorked: number;
   grossPay: number;
