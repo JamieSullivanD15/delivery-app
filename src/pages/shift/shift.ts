@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 
 import { Shift } from '../../models/shift-model';
 import { Delivery } from '../../models/delivery-model';
@@ -10,6 +10,7 @@ import { CompaniesProvider } from '../../providers/companies/companies-provider'
 import { TransactionProvider } from '../../providers/transaction/transaction-provider';
 import { DeliveryProvider } from '../../providers/delivery/delivery-provider';
 import { ShiftProvider } from '../../providers/shift/shift-provider';
+import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost-provider';
 
 @IonicPage({
   name: 'ShiftPage',
@@ -21,11 +22,13 @@ import { ShiftProvider } from '../../providers/shift/shift-provider';
 })
 export class ShiftPage {
 
-  companies: Array<Company>;
+  date = new Date().toJSON().split('T')[0];
   selectedCompany: Company;
   shift = {} as Shift;
   activeShift: boolean = false;
+  finishShiftActive: boolean = false;
 
+  companies: Array<Company>;
   transactions: Array<Transaction>;
   deliveries: Array<Delivery>;
 
@@ -33,11 +36,15 @@ export class ShiftPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController,
+    public alertCtrl: AlertController,
     private companiesProvider: CompaniesProvider,
     private transactionProvider: TransactionProvider,
     private deliveryProvider: DeliveryProvider,
-    private shiftProvider: ShiftProvider
+    private shiftProvider: ShiftProvider,
+    private fuelCostProvider: FuelCostProvider
   ) {
+    this.activeShift = this.shiftProvider.activeShift;
+    this.formatDate();
     this.companies = companiesProvider.getCompanies();
     this.transactions = this.transactionProvider.getTransactions();
     this.deliveries = this.deliveryProvider.getDeliveries();
@@ -47,8 +54,8 @@ export class ShiftPage {
   }
 
   startShift() {
-    this.activeShift = true;
     this.shiftProvider.activeShift = true;
+    this.activeShift = this.shiftProvider.activeShift;
     this.shift.company = this.selectedCompany;
     this.shift.company.wage = Number(this.shift.company.wage);
     this.shift.company.deliveryCharge = Number(this.shift.company.deliveryCharge);
@@ -73,12 +80,44 @@ export class ShiftPage {
     this.shift.totalEarned = this.shift.grossPay - totalExpenses;
   }
 
+  endShift() {
+    this.activeShift = false;
+    this.finishShiftActive = true;
+  }
+
+  cancelFinishShift() {
+    this.activeShift = true;
+    this.finishShiftActive = false;
+  }
+
   finishShift() {
-    this.shiftProvider.currentShift.deliveries = this.deliveryProvider.getDeliveries();
-    this.shiftProvider.currentShift.transactions = this.transactionProvider.getTransactions();
+    this.updateCurrentShiftInfo();
+    this.shiftProvider.activeShift = false;
+    this.finishShiftActive = false;
+    this.deliveryProvider.deliveries = Array<Delivery>();
+    this.transactionProvider.transactions = Array<Transaction>();
+    this.shiftProvider.endCurrentShift();
+    this.navCtrl.setRoot('ProfilePage');
+  }
+
+  updateCurrentShiftInfo() {
+    this.shift.hoursWorked = Number(this.shift.hoursWorked);
+    this.shift.endMileage = Number(this.shift.endMileage);
+    this.shiftProvider.currentShift.hoursWorked = this.shift.hoursWorked;
+    this.shiftProvider.currentShift.endMileage = this.shift.endMileage;
     this.shiftProvider.currentShift.grossPay = this.shift.grossPay;
     this.shiftProvider.currentShift.totalEarned = this.shift.totalEarned;
-    // console.log(this.shiftProvider.currentShift);
+    this.shiftProvider.currentShift.deliveries = this.deliveryProvider.getDeliveries();
+    this.shiftProvider.currentShift.transactions = this.transactionProvider.getTransactions();
+    this.shiftProvider.currentShift.totalMileage = this.shiftProvider.currentShift.endMileage - this.shiftProvider.currentShift.startMileage;
+    this.shiftProvider.currentShift.mileageFuelCost = this.fuelCostProvider.calculateFuelCost(this.shiftProvider.currentShift.totalMileage);
+  }
+
+  formatDate() {
+    let splitDate = this.date.split('-');
+    this.date = splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0];
+    this.shift.date = this.date;
+    this.shiftProvider.currentShift.date = this.shift.date;
   }
 
   add(type: any) {
@@ -115,6 +154,26 @@ export class ShiftPage {
     this.calculateShiftTotal();
   }
 
+  finishShiftConfirmation() {
+    const alert = this.alertCtrl.create({
+      title: 'Finish Shift',
+      message: 'Please confirm you would like to finish the current shift.',
+      buttons: [
+        {
+          text: 'Finish',
+          handler: () => {
+            this.finishShift();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentActionSheet(i: number, type: any) {
     const actionSheet = this.actionSheetCtrl.create(
 
@@ -135,10 +194,7 @@ export class ShiftPage {
          },
          {
            text: 'Cancel',
-           role: 'cancel',
-           handler: () => {
-
-           }
+           role: 'cancel'
          }
        ]
       }

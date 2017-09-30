@@ -3,13 +3,18 @@ import { Company } from './company-model';
 import { Transaction } from './transaction-model';
 
 export interface Shift {
-  date: Date;
+  date: any;
+  company: Company;
+
   deliveries: Array<Delivery>;
   transactions: Array<Transaction>;
-  company: Company;
+
   startMileage: number;
   endMileage: number;
+  totalMileage: number;
   mileageFuelCost: number;
+
+  hoursWorked: number;
   grossPay: number;
   totalEarned: number;
 }

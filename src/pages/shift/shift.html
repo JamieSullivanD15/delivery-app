@@ -6,7 +6,7 @@
 
 <ion-content no-padding>
 
-  <div class="start-shift" *ngIf="!activeShift">
+  <div class="start-shift" *ngIf="!activeShift && !finishShiftActive">
     <ion-item no-padding>
       <ion-label floating>Choose Company</ion-label>
       <ion-select type="select" [(ngModel)]="selectedCompany">
@@ -25,7 +25,7 @@
   </div>
 
   <div class="active-shift" *ngIf="activeShift">
-    <ion-row>Date</ion-row>
+    <ion-row>{{shift.date}}</ion-row>
 
     <ion-row>
       <ion-col col-9>Add Transaction</ion-col>
@@ -61,7 +61,7 @@
     <ion-list no-padding>
       <button ion-item no-padding (click)="presentActionSheet(i, 'delivery')" *ngFor="let delivery of deliveries; let i = index">
         <ion-row>
-          <ion-col>Delivery # {{i + 1}}</ion-col>
+          <ion-col>Delivery {{i + 1}}</ion-col>
           <ion-col>{{delivery.paymentType}}</ion-col>
           <ion-col>Tip: {{delivery.tipAmount}}</ion-col>
           <ion-col>Total: {{delivery.total}}</ion-col>
@@ -70,7 +70,24 @@
     </ion-list>
 
     <ion-row>Total: {{this.shift.totalEarned}}</ion-row>
-    <button ion-button (click)="finishShift()" style="margin-bottom: 100px;">Finish Shift</button>
+    <button ion-button (click)="endShift()" style="margin-bottom: 100px;">Finish Shift</button>
+
+  </div>
+
+  <div class="finish-shift" *ngIf="!activeShift && finishShiftActive">
+
+    <ion-item no-padding>
+      <ion-label floating>Enter Hours Worked</ion-label>
+      <ion-input type="number" [(ngModel)]="shift.hoursWorked">{{shift.hoursWorked}}</ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+      <ion-label floating>Enter End Mileage</ion-label>
+      <ion-input type="number" [(ngModel)]="shift.endMileage">{{shift.endMileage}}</ion-input>
+    </ion-item>
+
+    <button ion-button (click)="finishShiftConfirmation()">Finish Shift</button>
+    <button ion-button (click)="cancelFinishShift()">Cancel</button>
 
   </div>
 
