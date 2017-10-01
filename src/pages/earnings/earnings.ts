@@ -15,20 +15,20 @@ import { ShiftProvider } from '../../providers/shift/shift-provider';
 })
 export class EarningsPage {
 
-  shifts = Array<Shift>();
-  // shifts = [
-  //   {
-  //     date: '01/10/2017',
-  //     totalEarned: 500
-  //   }
-  // ];
+  //shifts = Array<Shift>();
+  shifts = [
+    {
+      date: '01/10/2017',
+      totalEarned: 500
+    }
+  ];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private shiftProvider: ShiftProvider
   ) {
-    this.shifts = this.shiftProvider.getShifts();
+    //this.shifts = this.shiftProvider.getShifts();
   }
 
   read(shift) {
