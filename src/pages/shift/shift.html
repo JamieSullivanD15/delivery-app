@@ -39,7 +39,7 @@
     <ion-list no-padding>
       <button ion-item no-padding (click)="presentActionSheet(i, 'transaction')" *ngFor="let transaction of transactions; let i = index">
         <ion-row>
-          <ion-col>Transaction # {{i + 1}}</ion-col>
+          <ion-col>Transaction {{i + 1}}</ion-col>
           <ion-col>{{transaction.type}}</ion-col>
           <ion-col>{{transaction.amount}}</ion-col>
         </ion-row>

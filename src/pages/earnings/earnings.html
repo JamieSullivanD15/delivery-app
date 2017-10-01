@@ -4,6 +4,33 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding style="margin-top: 70px;">
+
+  <ion-row>
+    <ion-col col-6>
+      <ion-label stacked>From</ion-label>
+      <ion-input type="date"></ion-input>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-label stacked>To</ion-label>
+      <ion-input type="date"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <button ion-button>Search</button>
+  </ion-row>
+
+  <ion-row>Shifts</ion-row>
+
+  <ion-list no-padding>
+    <button ion-item no-padding *ngFor="let shift of shifts">
+      <ion-row>
+        <ion-col col-7>{{shift.date}}</ion-col>
+        <ion-col col-5>Total Earned: {{shift.totalEarned}}</ion-col>
+      </ion-row>
+    </button>
+  </ion-list>
 
 </ion-content>

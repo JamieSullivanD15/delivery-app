@@ -16,6 +16,10 @@ export class ShiftProvider {
 
   }
 
+  getShifts() {
+    return this.shifts;
+  }
+
   getCurrentShift() {
     return this.currentShift;
   }

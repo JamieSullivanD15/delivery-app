@@ -9,12 +9,12 @@ export interface Shift {
   deliveries: Array<Delivery>;
   transactions: Array<Transaction>;
 
-  startMileage: number;
-  endMileage: number;
-  totalMileage: number;
+  startMileage: any;
+  endMileage: any;
+  totalMileage: any;
   mileageFuelCost: any;
 
-  hoursWorked: number;
-  grossPay: number;
-  totalEarned: number;
+  hoursWorked: any;
+  grossPay: any;
+  totalEarned: any;
 }
