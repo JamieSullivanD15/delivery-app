@@ -16,6 +16,12 @@ import { ShiftProvider } from '../../providers/shift/shift-provider';
 export class EarningsPage {
 
   shifts = Array<Shift>();
+  // shifts = [
+  //   {
+  //     date: '01/10/2017',
+  //     totalEarned: 500
+  //   }
+  // ];
 
   constructor(
     public navCtrl: NavController,
@@ -23,9 +29,12 @@ export class EarningsPage {
     private shiftProvider: ShiftProvider
   ) {
     this.shifts = this.shiftProvider.getShifts();
-    console.log(this.shifts);
-    console.log('-------------');
-    console.log(this.shiftProvider.getShifts());
+  }
+
+  read(shift) {
+    this.navCtrl.setRoot('ShiftDetailsPage', {
+      shift: shift
+    });
   }
 
 

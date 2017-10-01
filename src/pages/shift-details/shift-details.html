@@ -1,18 +1,89 @@
-<!--
-  Generated template for the ShiftDetailsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>ShiftDetails</ion-title>
-  </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding style="margin-top: 70px;">
+
+  <ion-grid>
+
+    <ion-row>Shift Details</ion-row>
+
+    <ion-row>
+      <ion-col>Date: </ion-col> <ion-col>{{shift.date}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Company: </ion-col> <ion-col>{{shift.company.name}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Hours Worked: </ion-col> <ion-col>{{shift.hoursWorked}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Transactions: </ion-col>
+      <ion-col>
+        <button ion-button icon-only (click)="dropMenu('transaction')">
+          <ion-icon name="transactionDropdown.arrow"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-list no-padding *ngIf="transactionDropdown.isActive">
+      <button ion-item no-padding *ngFor="let transaction of shift.transactions; let i = index">
+        <ion-row>
+          <ion-col>Transaction {{i + 1}}</ion-col>
+          <ion-col>{{transaction.type}}</ion-col>
+          <ion-col>{{transaction.amount}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{transaction.notes}}</ion-col>
+        </ion-row>
+      </button>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>Deliveries: </ion-col>
+      <ion-col>
+        <button ion-button icon-only (click)="dropMenu('delivery')">
+          <ion-icon name="deliveryDropdown.arrow"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-list no-padding *ngIf="deliveryDropdown.isActive">
+      <button ion-item no-padding *ngFor="let delivery of shift.deliveries; let i = index">
+        <ion-row>
+          <ion-col>Delivery {{i + 1}}</ion-col>
+          <ion-col>{{delivery.paymentType}}</ion-col>
+          <ion-col>Tip: {{delivery.tipAmount}}</ion-col>
+          <ion-col>Total: {{delivery.total}}</ion-col>
+        </ion-row>
+      </button>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>Total Mileage: </ion-col> <ion-col>{{shift.totalMileage}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Fuel Cost: </ion-col> <ion-col>{{shift.mileageFuelCost}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Gross Pay: </ion-col> <ion-col>{{shift.grossPay}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Total Earned: </ion-col> <ion-col>{{shift.totalEarned}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Average Earned: </ion-col> <ion-col>{{averageEarned}} Per Hour</ion-col>
+    </ion-row>
+
+  </ion-grid>
 
 </ion-content>
