@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Shift } from '../../models/shift-model';
+
+import { ShiftProvider } from '../../providers/shift/shift-provider';
 
 @IonicPage({
   name: 'ShiftDetailsPage',
@@ -13,20 +15,30 @@ import { Shift } from '../../models/shift-model';
 })
 export class ShiftDetailsPage {
 
-  //shift = {} as Shift;
-  shift = {
-    date: '01/10/2017',
-    company: 'Test',
-    deliveries: [],
-    transactions: [],
-    totalMileage: 500,
-    mileageFuelCost: 25,
-    hoursWorked: 7,
-    grossPay: 666,
-    totalEarned: 123
-  };
+  // shift = {
+  //   date: '01/10/2017',
+  //   company: {name: 'Test'},
+  //   deliveries: [
+  //     {paymentType: 'Paid', tipAmount: 5, totalEarned: 7},
+  //     {paymentType: 'Paid', tipAmount: 5, totalEarned: 7},
+  //     {paymentType: 'Paid', tipAmount: 5, totalEarned: 7},
+  //     {paymentType: 'Paid', tipAmount: 5, totalEarned: 7}
+  //   ],
+  //   transactions: [
+  //     {type: 'Bonus', amount: 5, notes: 'Hello'},
+  //     {type: 'Bonus', amount: 5, notes: 'Hello'},
+  //     {type: 'Bonus', amount: 5, notes: 'Hello'}
+  //   ],
+  //   totalMileage: 500,
+  //   mileageFuelCost: 25,
+  //   hoursWorked: 7,
+  //   grossPay: 666,
+  //   totalEarned: 123
+  // };
 
-  averageEarned: any = this.shift.totalEarned / this.shift.hoursWorked;
+  shift = {} as Shift;
+  index: number;
+  averageEarned: any;
 
   deliveryDropdown: any = {
     isActive: false,
@@ -40,9 +52,13 @@ export class ShiftDetailsPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    private shiftProvider: ShiftProvider
   ) {
-    //this.shift = this.navParams.get('shift');
+    this.shift = this.navParams.get('shift');
+    this.index = this.navParams.get('index');
+    this.averageEarned = this.shift.totalEarned / this.shift.hoursWorked;
   }
 
   dropMenu(type: any) {
@@ -51,6 +67,31 @@ export class ShiftDetailsPage {
 
     this.deliveryDropdown.isActive ? this.deliveryDropdown.arrow = 'arrow-dropup' : this.deliveryDropdown.arrow = 'arrow-dropdown';
     this.transactionDropdown.isActive ? this.transactionDropdown.arrow = 'arrow-dropup' : this.transactionDropdown.arrow = 'arrow-dropdown';
+  }
+
+  goBack() {
+    this.navCtrl.setRoot('EarningsPage');
+  }
+
+  presentDeleteConfirmation() {
+    const alert = this.alertCtrl.create({
+      title: 'Delete Shift',
+      message: 'Please confirm deletion of this shift.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.shiftProvider.delete(this.index);
+            this.goBack();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

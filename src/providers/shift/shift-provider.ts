@@ -37,4 +37,8 @@ export class ShiftProvider {
     //this.currentShift.mileageFuelCost = this.currentShift.mileageFuelCost.toFixed(2);
   }
 
+  delete(i: number) {
+    this.shifts.splice(i, 1);
+  }
+
 }

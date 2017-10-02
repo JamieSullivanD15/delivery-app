@@ -25,7 +25,7 @@
   <ion-row>Shifts</ion-row>
 
   <ion-list no-padding *ngIf="shifts">
-    <button ion-item no-padding *ngFor="let shift of shifts" (click)="read(shift)">
+    <button ion-item no-padding *ngFor="let shift of shifts; let i = index" (click)="read(shift, i)">
       <ion-row>
         <ion-col col-7>{{shift.date}}</ion-col>
         <ion-col col-5>Total Earned: {{shift.totalEarned}}</ion-col>

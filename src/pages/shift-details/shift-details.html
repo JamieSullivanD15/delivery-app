@@ -6,7 +6,7 @@
 
 <ion-content no-padding style="margin-top: 70px;">
 
-  <ion-grid>
+  <ion-grid style="margin-bottom: 200px;">
 
     <ion-row>Shift Details</ion-row>
 
@@ -81,7 +81,12 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>Average Earned: </ion-col> <ion-col>{{averageEarned}} Per Hour</ion-col>
+      <ion-col>Average Per Hour: </ion-col> <ion-col>{{averageEarned}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <button ion-button (click)="goBack()">Back</button>
+      <button ion-button (click)="presentDeleteConfirmation()">Delete</button>
     </ion-row>
 
   </ion-grid>
