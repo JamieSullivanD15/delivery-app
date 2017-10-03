@@ -15,6 +15,7 @@ import { ShiftProvider } from '../../providers/shift/shift-provider';
 })
 export class EarningsPage {
 
+  myDate: any;
   shifts = Array<Shift>();
   // shifts = [
   //   {

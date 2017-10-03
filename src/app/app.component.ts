@@ -13,8 +13,7 @@ export class MyApp {
   pages: any = [
   { name: 'ProfilePage', icon:'person' },
   { name: 'ShiftPage', icon:'paper' },
-  { name: 'EarningsPage', icon:'stats' },
-  { name: 'SettingsPage', icon:'settings' }
+  { name: 'EarningsPage', icon:'stats' }
 ];
 
   constructor(

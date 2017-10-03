@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FuelCostProvider {
 
-  private vechicleMpg = 45;
-  private pricePerLitre = 1.29;
+  vechicleMpg = 45;
+  pricePerLitre = 1.29;
 
   constructor(
     public http: Http
@@ -15,16 +15,8 @@ export class FuelCostProvider {
 
   }
 
-  setMpg(vechicleMpg: number) {
-    this.vechicleMpg = vechicleMpg;
-  }
-
   getMpg() {
     return this.vechicleMpg;
-  }
-
-  setPricePerLitre(pricePerLitre: number) {
-    this.pricePerLitre = pricePerLitre;
   }
 
   getPricePerLitre() {
@@ -32,6 +24,9 @@ export class FuelCostProvider {
   }
 
   calculateFuelCost(totalMileage: number) {
+    this.vechicleMpg = Number(this.vechicleMpg);
+    this.pricePerLitre = Number(this.pricePerLitre);
+
     // 1 Imperial Gallon is 4.54609 Litre's
     // Mileage Fuel Cost = Distance / MPG * Price Per Gallon
     let pricePerGallon = this.pricePerLitre * 4.54609;

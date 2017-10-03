@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { FuelCostProvider } from '../../providers/fuel-cost/fuel-cost-provider';
 import { CompaniesProvider } from '../../providers/companies/companies-provider';
+
+import { VehicleExpense } from '../../models/vehicle-expense-model';
 import { Company } from '../../models/company-model';
 
 @IonicPage({
@@ -14,7 +17,20 @@ import { Company } from '../../models/company-model';
 })
 export class ProfilePage {
 
+  userName = 'Jamie';
   company = {} as Company;
+  companies = Array<Company>();
+  vehicleExpenses = Array<VehicleExpense>();
+
+  companyDropdown: any = {
+    isActive: false,
+    arrow: 'arrow-dropdown'
+  };
+
+  vehicleExpenseDropdown: any = {
+    isActive: false,
+    arrow: 'arrow-dropdown'
+  };
 
   constructor(
     public navCtrl: NavController,
@@ -22,7 +38,7 @@ export class ProfilePage {
     private fuelCostProvider: FuelCostProvider,
     private companiesProvider: CompaniesProvider
   ) {
-
+    this.companies = this.companiesProvider.getCompanies();
   }
 
   addCompany() {
@@ -30,9 +46,12 @@ export class ProfilePage {
     this.company = {} as Company;
   }
 
-  getCompanies() {
-    this.companiesProvider.getCompanies()
-  }
+  dropMenu(type: any) {
+    if (type === 'company') this.companyDropdown.isActive = !this.companyDropdown.isActive;
+    if (type === 'vehicleExpense') this.vehicleExpenseDropdown.isActive = !this.vehicleExpenseDropdown.isActive;
 
+    this.companyDropdown.isActive ? this.companyDropdown.arrow = 'arrow-dropup' : this.companyDropdown.arrow = 'arrow-dropdown';
+    this.vehicleExpenseDropdown.isActive ? this.vehicleExpenseDropdown.arrow = 'arrow-dropup' : this.vehicleExpenseDropdown.arrow = 'arrow-dropdown';
+  }
 
 }
