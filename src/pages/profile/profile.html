@@ -20,7 +20,7 @@
   <ion-list no-padding *ngIf="companyDropdown.isActive">
     <ion-row>
       <ion-col col-1 no-padding >
-        <button ion-button icon-only clear no-padding>
+        <button ion-button icon-only clear no-padding (click)="addCompany()">
           <ion-icon name="add-circle" no-padding></ion-icon>
         </button>
       </ion-col>
@@ -29,49 +29,18 @@
       </ion-col>
     </ion-row>
 
-    <button ion-item no-padding *ngFor="let company of companies; let i = index">
-      <ion-row>
-        <ion-col col-4>Name</ion-col>
-        <ion-col col-4>Wage</ion-col>
-        <ion-col col-4>Delivery</ion-col>
-      </ion-row>
+    <ion-row *ngIf="companies.length > 0">
+      <ion-col col-4>Name</ion-col>
+      <ion-col col-4>Wage</ion-col>
+      <ion-col col-4>Delivery</ion-col>
+    </ion-row>
+
+    <button ion-item no-padding (click)="presentActionSheet(i)"
+      *ngFor="let company of companies; let i = index">
       <ion-row>
         <ion-col col-4>{{company.name}}</ion-col>
         <ion-col col-4>{{company.wage}}</ion-col>
         <ion-col col-4>{{company.deliveryCharge}}</ion-col>
-      </ion-row>
-    </button>
-  </ion-list>
-
-  <ion-row>
-    <ion-col>Vehicle Expenses</ion-col>
-    <ion-col>
-      <button ion-button icon-only clear (click)="dropMenu('vehicleExpense')">
-        <ion-icon name="{{vehicleExpenseDropdown.arrow}}"></ion-icon>
-      </button>
-    </ion-col>
-  </ion-row>
-
-  <ion-list no-padding *ngIf="vehicleExpenseDropdown.isActive">
-    <ion-row>
-      <ion-col col-1 no-padding >
-        <button ion-button icon-only clear no-padding>
-          <ion-icon name="add-circle" no-padding></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col>
-        Add New
-      </ion-col>
-    </ion-row>
-
-    <button ion-item no-padding *ngFor="let vehicleExpense of vehicleExpenses; let i = index">
-      <ion-row>
-        <ion-col col-8>Description</ion-col>
-        <ion-col col-4>Amount</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-8>{{vehicleExpense.description}}</ion-col>
-        <ion-col col-4>{{vehicleExpense.amount}}</ion-col>
       </ion-row>
     </button>
   </ion-list>
@@ -97,22 +66,5 @@
       </ion-item>
     </ion-col>
   </ion-row>
-
-  <ion-item>
-    <ion-label floating>Company Name</ion-label>
-    <ion-input type="string" [(ngModel)]="company.name"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Hourly Pay</ion-label>
-    <ion-input type="number" [(ngModel)]="company.wage"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Delivery Charge</ion-label>
-    <ion-input type="number" [(ngModel)]="company.deliveryCharge"></ion-input>
-  </ion-item>
-
-  <button ion-button (click)="addCompany()">Add Company</button>
 
 </ion-content>

@@ -23,7 +23,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>Transactions</ion-col>
+      <ion-col>{{numTransactions}} Transactions</ion-col>
       <ion-col>
         <button ion-button icon-only (click)="dropMenu('transaction')">
           <ion-icon name="{{transactionDropdown.arrow}}"></ion-icon>
@@ -45,7 +45,7 @@
     </ion-list>
 
     <ion-row>
-      <ion-col>Deliveries</ion-col>
+      <ion-col>{{numDeliveries}} Deliveries</ion-col>
       <ion-col>
         <button ion-button icon-only (click)="dropMenu('delivery')">
           <ion-icon name="{{deliveryDropdown.arrow}}"></ion-icon>

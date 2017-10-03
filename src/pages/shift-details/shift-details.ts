@@ -39,6 +39,8 @@ export class ShiftDetailsPage {
   shift = {} as Shift;
   index: number;
   averageEarned: any;
+  numDeliveries = 0;
+  numTransactions = 0;
 
   deliveryDropdown: any = {
     isActive: false,
@@ -59,6 +61,8 @@ export class ShiftDetailsPage {
     this.shift = this.navParams.get('shift');
     this.index = this.navParams.get('index');
     this.averageEarned = this.shift.totalEarned / this.shift.hoursWorked;
+    this.numDeliveries = this.shift.deliveries.length;
+    this.numTransactions = this.shift.transactions.length;
   }
 
   dropMenu(type: any) {
