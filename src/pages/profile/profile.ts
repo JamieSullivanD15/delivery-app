@@ -16,7 +16,7 @@ import { Company } from '../../models/company-model';
 })
 export class ProfilePage {
 
-  userName = 'Jamie';
+  username = 'Jamie Sullivan';
   company = {} as Company;
   companies = Array<Company>();
 
@@ -79,7 +79,7 @@ export class ProfilePage {
       title: 'Edit Username',
       inputs: [
         {
-          value: this.userName,
+          value: this.username,
           type: 'text'
         }
       ],
@@ -91,7 +91,7 @@ export class ProfilePage {
         {
           text: 'Update',
           handler: data => {
-            this.userName = data[0]
+            this.username = data[0]
           }
         }
       ]

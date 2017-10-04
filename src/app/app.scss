@@ -6,12 +6,16 @@ ion-header {
 }
 
 ion-content {
-  //margin-top: 70px;
+  margin-top: 55px;
 }
 
-.start-shift, .active-shift, .finish-shift {
-  margin-top: 60px;
+.top-element {
+  margin-top: 20px;
 }
+
+// .start-shift, .active-shift, .finish-shift {
+//   margin-top: 60px;
+// }
 
 .activeTab {
   background-color: map-get($colors, darker);
@@ -21,13 +25,13 @@ ion-footer {
   .button {
     margin: 0;
     border-radius: 0;
-    height: 60px;
+    height: 70px;
     border-left: 1px solid map-get($colors, darker);
     border-right: 1px solid map-get($colors, darker);
     border-top: 2px solid map-get($colors, darker);
 
     ion-icon {
-      font-size: 34px;
+      font-size: 40px;
     }
   }
 }
