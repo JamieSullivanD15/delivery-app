@@ -9,10 +9,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = 'ProfilePage';
+  activePage: any;
 
   pages: any = [
-  { name: 'ProfilePage', icon:'person' },
-  { name: 'ShiftPage', icon:'paper' },
+  { name: 'ProfilePage', icon:'home' },
+  { name: 'ShiftPage', icon:'add' },
   { name: 'EarningsPage', icon:'stats' }
 ];
 
@@ -21,17 +22,23 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen
   ) {
+    this.activePage = this.rootPage;
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
-
   }
 
   read(page) {
     this.nav.setRoot(page.name);
+    this.activePage = page.name;
+  }
+
+  isActive(page) {
+    return page.name == this.activePage;
   }
 
 

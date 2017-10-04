@@ -13,7 +13,7 @@
 
   <ion-row no-padding>
     <ion-col no-padding *ngFor="let page of pages">
-      <button ion-button full icon-only no-padding (click)="read(page)">
+      <button ion-button full icon-only no-padding (click)="read(page)" [class.activeTab]="isActive(page)">
         <ion-icon name="{{page.icon}}"></ion-icon>
       </button>
     </ion-col>

@@ -74,6 +74,31 @@ export class ProfilePage {
     alert.present();
   }
 
+  editUsername() {
+    const alert = this.alertCtrl.create({
+      title: 'Edit Username',
+      inputs: [
+        {
+          value: this.userName,
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Update',
+          handler: data => {
+            this.userName = data[0]
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   editCompany(i: number) {
     const alert = this.alertCtrl.create({
       title: 'Edit Company',

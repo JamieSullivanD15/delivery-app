@@ -54,7 +54,17 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+$button-md-background-color-hover: none;
+$button-md-clear-ripple-background-color: none;
+$button-md-clear-background-color-hover: none;
+$button-md-clear-background-color-activated: transparent;
+
+
 $font-family-md-base: 'noto-sans', sans-serif;
+$font-size-base: 16px;
+
+$text-input-md-show-valid-highlight: false;
+$text-input-md-margin-bottom: 0;
 
 
 

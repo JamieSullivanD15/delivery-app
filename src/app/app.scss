@@ -13,6 +13,10 @@ ion-content {
   margin-top: 60px;
 }
 
+.activeTab {
+  background-color: map-get($colors, darker);
+}
+
 ion-footer {
   .button {
     margin: 0;
