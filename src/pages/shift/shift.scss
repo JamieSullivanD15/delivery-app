@@ -1,3 +1,12 @@
 page-shift {
+  .top-element {
+    margin: 10px 0 20px 5px;
+  }
 
+  .add-new-button {
+    ion-icon {
+      font-size: 40px;
+      color: map-get($colors, primary);
+    }
+  } // add-new-button
 }

@@ -8,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = 'ProfilePage';
+  rootPage: any = 'ProfilePage';
   activePage: any;
 
   pages: any = [
@@ -40,6 +40,5 @@ export class MyApp {
   isActive(page) {
     return page.name == this.activePage;
   }
-
 
 }
